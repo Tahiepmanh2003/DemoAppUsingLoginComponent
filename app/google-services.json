@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "394619144245",
+    "firebase_url": "https://componentapp-ffd95-default-rtdb.firebaseio.com",
+    "project_id": "componentapp-ffd95",
+    "storage_bucket": "componentapp-ffd95.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:394619144245:android:d3b525d1cc54178967897c",
+        "android_client_info": {
+          "package_name": "com.example.demoappusinglogincomponent"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBiYKhIyeZD9Cbr6-vpSkc1fEDkJoxDM-k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
