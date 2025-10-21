@@ -35,11 +35,7 @@ class HomeActivity : AppCompatActivity() {
         // --- BƯỚC 1: TÙY BIẾN - Cung cấp danh sách các Fragment ---
         // Đây là bước bắt buộc vì component của bạn không có hành vi mặc định.
         val fragments = listOf(
-            HomeFragment(),         // Vị trí 0
-//            CartFragment(),         // Vị trí 1
-//            FeedbackFragment(),     // Vị trí 2
-//            ContactFragment(),      // Vị trí 3
-//            OrderFragment(),        // Vị trí 4
+            HomeFragment(),
         )
 
         // Tạo đối tượng cấu hình
@@ -117,21 +113,6 @@ class HomeActivity : AppCompatActivity() {
         // Gọi hàm public của component để cập nhật UI
         homeComponent.updateUserInfo(userName, userPhone, userEmail)
     }
-
-    /**
-     * Giao quyền xử lý nút back vật lý của hệ thống cho component trước.
-     */
-//    override fun onBackPressed() {
-//        // Hỏi component xem nó có muốn xử lý sự kiện back không (ví dụ: đóng drawer)
-//        if (homeComponent.handleOnBackPressed()) {
-//            return // Nếu component đã xử lý, chúng ta không làm gì thêm
-//        }
-//
-//        // Nếu component không xử lý, Activity sẽ tự quyết định hành động tiếp theo
-//        // Ví dụ: hiển thị dialog xác nhận thoát app
-//        // super.onBackPressed() // hoặc gọi hàm hiển thị dialog
-//        Toast.makeText(this, "Nhấn lần nữa để thoát", Toast.LENGTH_SHORT).show()
-//    }
 
     /**
      * Rất quan trọng: Dọn dẹp component khi Activity bị hủy để tránh rò rỉ bộ nhớ.

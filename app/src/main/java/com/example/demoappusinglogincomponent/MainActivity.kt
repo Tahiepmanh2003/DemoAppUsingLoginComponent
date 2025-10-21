@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.GravityCompat
 import com.example.demoappusinglogincomponent.view.main.HomeActivity
 import com.library.logincomponent.LoginCallback
 import com.library.logincomponent.LoginComponent
 import com.library.logincomponent.LoginConfig
-import com.library.logincomponent.databinding.ActivityMainBinding
 import com.library.logincomponent.model.User
 
 /**
@@ -25,23 +23,18 @@ import com.library.logincomponent.model.User
  * KHÔNG CẦN viết lại code login từ đầu!
  */
 class MainActivity : AppCompatActivity() {
-
     private lateinit var loginComponent: LoginComponent
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        // ============================================
         // CÁCH 1: Sử dụng config mặc định
+        // ============================================
         setupLoginComponentDefault()
-
-        // CÁCH 2: Sử dụng config tùy chỉnh (uncomment để dùng)
-        // setupLoginComponentCustom()
     }
 
-    /**
-     * CÁCH 1: Sử dụng LoginComponent với config mặc định
-     */
     private fun setupLoginComponentDefault() {
         // Bước 1: Khởi tạo component với config mặc định
         loginComponent = LoginComponent(
@@ -56,23 +49,17 @@ class MainActivity : AppCompatActivity() {
         // Bước 3: Set callback để xử lý các sự kiện
         loginComponent.setCallback(object : LoginCallback {
             override fun onLoginSuccess(user: User) {
-                // Xử lý khi đăng nhập thành công
                 Toast.makeText(
                     this@MainActivity,
                     "Chào mừng ${user.fullName ?: user.phone}!",
                     Toast.LENGTH_LONG
                 ).show()
-
-                // Lưu user vào SharedPreferences
                 saveUserToPreferences(user)
-
-                // Navigate đến màn hình chính
                 navigateToHome(user)
             }
 
             override fun onLoginFailure(errorMessage: String) {
                 // Xử lý khi đăng nhập thất bại
-                // Component đã tự show toast, có thể log thêm
                 android.util.Log.e("LoginDemo", "Login failed: $errorMessage")
             }
 
@@ -96,54 +83,6 @@ class MainActivity : AppCompatActivity() {
                 val intent = Intent(Intent.ACTION_DIAL).apply {
                     data = Uri.parse("tel:$phoneNumber")
                 }
-                startActivity(intent)
-            }
-        })
-    }
-
-    /**
-     * CÁCH 2: Sử dụng LoginComponent với config tùy chỉnh
-     */
-    private fun setupLoginComponentCustom() {
-        // Custom config để phù hợp với yêu cầu dự án
-        val customConfig = LoginConfig(
-            allowRegistration = true,           // Cho phép đăng ký
-            showForgotPassword = true,          // Hiển thị quên mật khẩu
-            minPasswordLength = 8,              // Mật khẩu tối thiểu 8 ký tự
-            phoneLength = 10,                   // Số điện thoại 10 số
-            maxLoginAttempts = 3,               // Tối đa 3 lần nhập sai
-            blockTimeMinutes = 5,               // Khóa 5 phút
-            hotlineNumber = "1900xxxx",         // Số hotline tùy chỉnh
-            firebasePath = "users",             // Path trên Firebase
-            logoResId = R.drawable.ppend,     // Logo tùy chỉnh
-            backgroundResId = R.drawable.applogin  // Background tùy chỉnh
-        )
-
-        loginComponent = LoginComponent(this, customConfig)
-
-        val container = findViewById<FrameLayout>(R.id.login_container)
-        loginComponent.attachToView(container)
-
-        loginComponent.setCallback(object : LoginCallback {
-            override fun onLoginSuccess(user: User) {
-                saveUserToPreferences(user)
-                navigateToHome(user)
-            }
-
-            override fun onLoginFailure(errorMessage: String) {
-                android.util.Log.e("LoginDemo", errorMessage)
-            }
-
-            override fun onNavigateToRegister() {
-                startActivity(Intent(this@MainActivity, RegisterActivity::class.java))
-            }
-
-            override fun onForgotPassword() {
-                Toast.makeText(this@MainActivity, "Forgot password", Toast.LENGTH_SHORT).show()
-            }
-
-            override fun onCallHotline(phoneNumber: String) {
-                val intent = Intent(Intent.ACTION_DIAL, Uri.parse("tel:$phoneNumber"))
                 startActivity(intent)
             }
         })
@@ -181,3 +120,5 @@ class MainActivity : AppCompatActivity() {
         loginComponent.destroy()
     }
 }
+
+

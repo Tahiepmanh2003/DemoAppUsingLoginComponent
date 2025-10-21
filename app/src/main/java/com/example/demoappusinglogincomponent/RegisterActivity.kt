@@ -23,16 +23,12 @@ class RegisterActivity : AppCompatActivity() {
         enableEdgeToEdge()
         binding = ActivityRegisterBinding.inflate(layoutInflater)
         setContentView(binding.root)
-//        ViewCompat.setOnApplyWindowInsetsListener(binding.main) { v, insets ->
-//            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-//            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-//            insets
-//        }
         database = FirebaseDatabase.getInstance().reference
         registerComponent = RegisterComponent(
             context = this,
             config = RegisterConfig.createDefault()
         )
+        //gọi componet đã đóng gói ra sử dụng
         registerComponent.attachTo(binding.main)
         registerComponent.setCallback(object : RegisterCallback {
             override fun onRegisterClicked(user: User) {
