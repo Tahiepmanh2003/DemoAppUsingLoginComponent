@@ -6,9 +6,12 @@ import android.os.Bundle
 import android.widget.FrameLayout
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.GravityCompat
+import com.example.demoappusinglogincomponent.view.main.HomeActivity
 import com.library.logincomponent.LoginCallback
 import com.library.logincomponent.LoginComponent
 import com.library.logincomponent.LoginConfig
+import com.library.logincomponent.databinding.ActivityMainBinding
 import com.library.logincomponent.model.User
 
 /**

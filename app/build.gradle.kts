@@ -2,6 +2,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.services)
+    id("kotlin-kapt")
 }
 
 android {
@@ -51,11 +52,19 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
 
     implementation(files("libs/logincomponent-release.aar"))
+    implementation(files("libs/registercomponent-release.aar"))
+    implementation(files("libs/homecomponent-release.aar"))
 
-        // Dependencies required by the component
-        implementation ("androidx.core:core-ktx:1.12.0")
-        implementation ("androidx.appcompat:appcompat:1.6.1")
-        implementation ("com.google.android.material:material:1.11.0")
-        implementation (platform("com.google.firebase:firebase-bom:32.7.0"))
-        implementation("com.google.firebase:firebase-database-ktx")
+    // Dependencies required by the component
+    implementation ("androidx.core:core-ktx:1.12.0")
+    implementation ("androidx.appcompat:appcompat:1.6.1")
+    implementation ("com.google.android.material:material:1.11.0")
+    implementation (platform("com.google.firebase:firebase-bom:32.7.0"))
+    implementation("com.google.firebase:firebase-database-ktx")
+    implementation("me.relex:circleindicator:2.1.6")
+    implementation("com.github.bumptech.glide:glide:4.16.0")
+    kapt("com.github.bumptech.glide:compiler:4.16.0")
+    implementation ("com.google.zxing:core:3.5.2")
+    implementation ("com.journeyapps:zxing-android-embedded:4.3.0")
+    implementation("com.google.code.gson:gson:2.10.1")
 }

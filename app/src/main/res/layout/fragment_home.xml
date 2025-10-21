@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_content"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".fragments.HomeFragment">
+
+    <!-- AppBar với MaterialToolbar -->
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/ThemeOverlay.Material3.ActionBar">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title="@string/home"
+            app:titleCentered="true"
+            app:menu="@menu/home_menu" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <!-- Nội dung cuộn được -->
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        android:clipToPadding="false"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- Banner -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="@dimen/define_dimen_20">
+
+                <androidx.viewpager2.widget.ViewPager2
+                    android:id="@+id/viewpager2"
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp" />
+
+                <me.relex.circleindicator.CircleIndicator3
+                    android:id="@+id/indicator3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/define_dimen_30"
+                    android:layout_gravity="center"
+                    app:ci_drawable="@drawable/bg_indicatior_selected"
+                    app:ci_drawable_unselected="@drawable/bg_indicatior_unselected" />
+            </LinearLayout>
+
+            <!-- Gợi ý món ăn -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/define_dimen_10"
+                android:layout_marginBottom="@dimen/define_dimen_5"
+                android:text="@string/food_suggest"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_size_normal"
+                android:textStyle="bold" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rcv_food"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:focusable="false"
+                android:layout_marginBottom="@dimen/define_dimen_10" />
+
+            <TextView
+                android:id="@+id/tv_no_result"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Không có kết quả"
+                android:textColor="@color/colorPrimaryDark"
+                android:textSize="@dimen/text_size_normal"
+                android:gravity="center"
+                android:visibility="gone"
+                android:layout_marginTop="@dimen/define_dimen_10"
+                android:layout_marginBottom="@dimen/define_dimen_10"/>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <!-- AI Chatbot Floating Action Button -->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_chatbot"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|end"
+        android:layout_margin="16dp"
+        android:src="@drawable/ic_chatbot"
+        android:contentDescription="AI Chatbot"
+        app:tint="@android:color/white"
+        app:backgroundTint="@color/colorPrimary2"
+        app:elevation="6dp"
+        app:pressedTranslationZ="12dp" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>
